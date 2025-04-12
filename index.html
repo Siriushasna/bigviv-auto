@@ -56,6 +56,7 @@
       align-items: center;
       text-align: center;
       background-attachment: fixed;
+      position: relative;
     }
 
     header::before {
@@ -65,7 +66,7 @@
       background: rgba(0, 0, 0, 0.5);
     }
 
-    header h1, header p {
+    header h1, header p, .btn {
       position: relative;
       z-index: 1;
       color: var(--white);
@@ -144,6 +145,31 @@
         font-size: 2.5em;
       }
     }
+
+    /* Chatbot Button Styles */
+    #chatbotButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      padding: 12px 20px;
+      background-color: #ff7f00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #chatbotContainer {
+      display:none; 
+      position: fixed; 
+      bottom: 70px; 
+      right: 20px; 
+      border-radius: 8px; 
+      overflow:hidden; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
@@ -166,12 +192,12 @@
       <div class="card">
         <img src="peinture.png" alt="Peinture Carrosserie">
         <h3>Peinture Carrosserie</h3>
-        <p>Retouches professionnelles, à domicile.</p>
+        <p>Retouches professionnelles à domicile.</p>
       </div>
       <div class="card">
         <img src="debosselage.png" alt="Débosselage">
         <h3>Débosselage Sans Peinture</h3>
-        <p>Bosse réparée discrètement, rapidement.</p>
+        <p>Bosse réparée discrètement et rapidement.</p>
       </div>
       <div class="card">
         <img src="covering.png" alt="Covering">
@@ -204,6 +230,12 @@
     <p>© 2025 BIGVIV AUTO – Tous droits réservés</p>
   </footer>
 
+  <!-- Chatbot Integration -->
+  <button id="chatbotButton" onclick="toggleChatbot()">💬 Service Client</button>
+  <div id="chatbotContainer">
+    <iframe style="width: 400px; height: 600px; border: none;" src="https://app.fastbots.ai/embed/cm9dknhgt1ikprik7pspfu0fv"></iframe>
+  </div>
+
   <script>
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -212,6 +244,12 @@
         document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbotContainer');
+      chatbot.style.display = (chatbot.style.display === "none" || chatbot.style.display === "") ? "block" : "none";
+    }
   </script>
+
 </body>
 </html>
