@@ -1,3 +1,4 @@
+<!-- Ton HTML complet corrigé avec Logo et Chatbot amélioré -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -48,7 +49,7 @@
     }
 
     header {
-      height: 80vh;
+      height: 85vh;
       background: url('header.jpg') no-repeat center center/cover;
       display: flex;
       flex-direction: column;
@@ -66,14 +67,20 @@
       background: rgba(0, 0, 0, 0.5);
     }
 
-    header h1, header p, .btn {
+    header h1, header p, .btn, header img {
       position: relative;
       z-index: 1;
       color: var(--white);
     }
 
+    header img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
     header h1 {
-      font-size: 4em;
+      font-size: 3.5em;
       text-shadow: 2px 2px 8px var(--shadow);
       margin-bottom: 10px;
     }
@@ -138,36 +145,34 @@
     }
 
     @media (max-width: 768px) {
-      .services {
-        flex-direction: column;
-      }
-      header h1 {
-        font-size: 2.5em;
-      }
+      header h1 { font-size: 2em; }
+      header img { width: 70px; }
+      .services { flex-direction: column; }
     }
 
-    /* Chatbot Button Styles */
     #chatbotButton {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 999;
-      padding: 12px 20px;
+      padding: 10px 15px;
       background-color: #ff7f00;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      z-index: 999;
     }
 
     #chatbotContainer {
-      display:none; 
-      position: fixed; 
-      bottom: 70px; 
-      right: 20px; 
-      border-radius: 8px; 
-      overflow:hidden; 
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      width: 320px;
+      height: 450px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       z-index: 999;
     }
   </style>
@@ -181,6 +186,7 @@
   </nav>
 
   <header id="accueil">
+    <img src="favicon.png" alt="Logo BIGVIV AUTO">
     <h1>BIGVIV AUTO</h1>
     <p>Carrosserie mobile haut de gamme au Havre et en Normandie.</p>
     <a href="#services" class="btn">Voir nos services</a>
@@ -189,31 +195,11 @@
   <section id="services">
     <h2>Nos Services</h2>
     <div class="services">
-      <div class="card">
-        <img src="peinture.png" alt="Peinture Carrosserie">
-        <h3>Peinture Carrosserie</h3>
-        <p>Retouches professionnelles à domicile.</p>
-      </div>
-      <div class="card">
-        <img src="debosselage.png" alt="Débosselage">
-        <h3>Débosselage Sans Peinture</h3>
-        <p>Bosse réparée discrètement et rapidement.</p>
-      </div>
-      <div class="card">
-        <img src="covering.png" alt="Covering">
-        <h3>Covering</h3>
-        <p>Personnalisation complète, tous styles.</p>
-      </div>
-      <div class="card">
-        <img src="lustrage.png" alt="Lustrage">
-        <h3>Lustrage</h3>
-        <p>Votre voiture brille comme jamais.</p>
-      </div>
-      <div class="card">
-        <img src="jantes.png" alt="Rénovation Jantes">
-        <h3>Rénovation de Jantes</h3>
-        <p>Redonnez vie à vos jantes abîmées.</p>
-      </div>
+      <div class="card"><img src="peinture.png" alt="Peinture Carrosserie"><h3>Peinture Carrosserie</h3><p>Retouches professionnelles à domicile.</p></div>
+      <div class="card"><img src="debosselage.png" alt="Débosselage"><h3>Débosselage Sans Peinture</h3><p>Bosse réparée discrètement et rapidement.</p></div>
+      <div class="card"><img src="covering.png" alt="Covering"><h3>Covering</h3><p>Personnalisation complète.</p></div>
+      <div class="card"><img src="lustrage.png" alt="Lustrage"><h3>Lustrage</h3><p>Brillance miroir.</p></div>
+      <div class="card"><img src="jantes.png" alt="Rénovation Jantes"><h3>Rénovation Jantes</h3><p>Redonnez vie à vos jantes.</p></div>
     </div>
   </section>
 
@@ -230,26 +216,24 @@
     <p>© 2025 BIGVIV AUTO – Tous droits réservés</p>
   </footer>
 
-  <!-- Chatbot Integration -->
+  <!-- Bouton Chatbot amélioré -->
   <button id="chatbotButton" onclick="toggleChatbot()">💬 Service Client</button>
   <div id="chatbotContainer">
-    <iframe style="width: 400px; height: 600px; border: none;" src="https://app.fastbots.ai/embed/cm9dknhgt1ikprik7pspfu0fv"></iframe>
+    <iframe src="https://app.fastbots.ai/embed/cm9dknhgt1ikprik7pspfu0fv" width="100%" height="100%" frameborder="0"></iframe>
   </div>
 
   <script>
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = link.getAttribute('href').substring(1);
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
     function toggleChatbot() {
       const chatbot = document.getElementById('chatbotContainer');
-      chatbot.style.display = (chatbot.style.display === "none" || chatbot.style.display === "") ? "block" : "none";
+      chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
     }
-  </script>
 
+    document.querySelectorAll('nav a').forEach(link => {
+      link.onclick = e => {
+        e.preventDefault();
+        document.getElementById(link.getAttribute('href').slice(1)).scrollIntoView({ behavior: 'smooth' });
+      };
+    });
+  </script>
 </body>
 </html>
